@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Super Máquina Resolvedora de Problemas</title>
+</head>
+<body>
+
+    <h1>O que você está procurando hoje?</h1>
+
+
+    <button onclick="descubraCurso()">Você gostaria de comprar um curso</button> <br><br>
+    <button onclick="descubraNota()">Descubra sua nota Escolar</button> <br><br>
+    <button onclick="descubraPeso()">Compare seu peso com o de um amigo</button> <br><br>
+    <button onclick="descubraNascimento()">Veja quem é mais novo entre você e seu amigo</button> <br><br>
+    <button onclick="descubraVoto()">Descubra se você precisa votar</button> <br><br>
+    <button onclick="operacoesMatematicas()">Use uma das 4 operações básicas</button> <br><br>
+    
+    <!-- Divs para exibir resultados  -->
+    <div id="vetores"></div>
+    <div id="resultado"></div>
+    <div id="peso">
+        <ul id="resultadoPeso"></ul>
+    </div>
+    <div id="nascimento">
+        <ul id="resultadoNascimento"></ul>
+    </div>
+    <div id="voto">
+        <ul id="resultadoVoto"></ul>
+    </div>
+    <div id="operacoes">
+        <ul id="resultadoOperacoes"></ul>
+    </div>
+
+    <script>
+        // Função para descobrir e exibir informações sobre cursos
+        function descubraCurso() {
+            var nome = prompt("Digite o seu Nome");
+            var cursos = prompt("Escolha seu Curso: \n 1 - Curso de Informatica = $50.00 \n 2 - Curso de Administração = $50.00 \n 3 - Curso de RH = $50.00 \n 4 - Curso de Gastronomia = $55.00");
+
+            var resultado;
+            var valor;
+
+            // Switch case para escolher o curso com base no input do usuário
+            switch (cursos) {
+                case "1":
+                    resultado = "Você escolheu o curso de informatica";
+                    valor = "Você vai pagar $50.00 pelo seu curso";
+                    break;
+                case "2":
+                    resultado = "Você escolheu o curso de Administração";
+                    valor = "Você vai pagar $50.00 pelo seu curso";
+                    break;
+                case "3":
+                    resultado = "Você escolheu o curso de RH";
+                    valor = "Você vai pagar $50.00 pelo seu curso";
+                    break;
+                case "4":
+                    resultado = "Você escolheu o curso de Gastronomia";
+                    valor = "Você vai pagar $55.00 pelo seu curso";
+                    break;
+                default:
+                    resultado = "Curso inválido";
+                    valor = "";
+                    break;
+            }
+
+            var lista = "<ul><li>" + resultado + "</li><li>" + valor + "</li></ul>";
+
+            document.getElementById("resultado").innerHTML = lista;
+        }
+
+        // Função para calcular a média de notas escolares
+        function descubraNota() {
+            var nome = prompt("Pessoa 1, Digite seu nome :");
+            var nota1 = prompt("Digite a sua primeira nota de 0 a 10: ");
+            var nota2 = prompt("Digite a sua segunda nota de 0 a 10: ");
+            var nota3 = prompt("Digite a sua terceira nota de 0 a 10: ");
+
+            nota1 = nota1 * 1;
+            nota2 = nota2 * 1;
+            nota3 = nota3 * 1;
+
+            var notaMaior, notaDoMeio, notaMenor;
+
+            // Lógica para determinar a maior, do meio e menor nota
+            if (nota1 >= nota2 && nota1 >= nota3) {
+                notaMaior = nota1;
+                if (nota2 >= nota3) {
+                    notaDoMeio = nota2;
+                    notaMenor = nota3;
+                } else {
+                    notaDoMeio = nota3;
+                    notaMenor = nota2;
+                }
+            } else if (nota2 >= nota1 && nota2 >= nota3) {
+                notaMaior = nota2;
+                if (nota1 >= nota3) {
+                    notaDoMeio = nota1;
+                    notaMenor = nota3;
+                } else {
+                    notaDoMeio = nota3;
+                    notaMenor = nota1;
+                }
+            } else {
+                notaMaior = nota3;
+                if (nota1 >= nota2) {
+                    notaDoMeio = nota1;
+                    notaMenor = nota2;
+                } else {
+                    notaDoMeio = nota2;
+                    notaMenor = nota1;
+                }
+            }
+
+            var media = (notaMaior + notaDoMeio + notaMenor) / 3;
+
+            var lista = "<ul><li>Aluno: " + nome + "</li><li>Nota 1: " + nota1 + "</li><li>Nota 2: " + nota2 + "</li><li>Nota 3: " + nota3 + "</li><li>Média: " + media + "</li></ul>";
+
+            document.getElementById("resultado").innerHTML = lista;
+        }
+
+        // Função para comparar pesos entre duas pessoas
+        function descubraPeso() {
+            let Nome1;
+            let Peso1;
+            let Nome2;
+            let Peso2;
+            let Resultado;
+
+            Nome1 = prompt("Pessoa 1, Digite seu nome :");
+            Peso1 = prompt("Pessoa 1, Digite seu peso:") * 1;
+            Nome2 = prompt("Pessoa 2, Digite seu nome :");
+            Peso2 = prompt("Pessoa 2, Digite seu peso:") * 1;
+
+            // Comparação de pesos para determinar quem é mais pesado
+            if (Peso1 > Peso2) {
+                Resultado = "A primeira pessoa é mais pesada, pesando: " + Peso1;        
+            } else if (Peso2 > Peso1) {
+                Resultado = "A segunda pessoa é mais pesada, pesando: " + Peso2;  
+            } 
+
+            var lista = "<ul><li>Nome1: " + Nome1 + "</li><li>Peso1: " + Peso1 + "</li><li>Nome2: " + Nome2 + "</li><li>Peso2: " + Peso2 + "</li><li>Resultado: " + Resultado + "</li></ul>";
+
+            document.getElementById("resultadoPeso").innerHTML = lista;
+        }
+
+        // Função para determinar qual pessoa é mais nova com base no ano de nascimento
+        function descubraNascimento() {
+            let Nome1;
+            let Ano1;
+            let Nome2;
+            let Ano2;
+            let Resultado;
+
+            Nome1 = prompt("Pessoa 1, Digite seu nome :");
+            Ano1 = Number(prompt("Digite o ano em que você nasceu:"));
+
+            Nome2 = prompt("Pessoa 2, Digite seu nome :");
+            Ano2 = Number(prompt("Pessoa 2, Digite o ano em que você nasceu:"));
+
+            Ano1 = 2024 - Ano1;
+            Ano2 = 2024 - Ano2;
+
+            // Comparação de idades para determinar quem é mais novo
+            if (Ano1 < Ano2) {
+                Resultado = "A primeira pessoa é a mais nova, idade: " + Ano1;         
+            } else if (Ano2 < Ano1) {
+                Resultado = "A segunda pessoa é a mais nova, idade: " + Ano2;  
+            } else {
+                Resultado = "As duas pessoas têm a mesma idade.";
+            }
+
+            var lista = "<ul><li>Nome1: " + Nome1 + "</li><li>Ano1: " + Ano1 + "</li><li>Nome2: " + Nome2 + "</li><li>Ano2: " + Ano2 + "</li><li>Resultado: " + Resultado + "</li></ul>";
+
+            document.getElementById("resultadoNascimento").innerHTML = lista;
+        }
+
+        // Função para verificar se a pessoa precisa votar com base na idade
+        function descubraVoto() {
+            let Nome;
+            let Idade;
+            let Voto;
+
+            Nome = prompt("Digite o seu Nome");
+            Idade = prompt("Digite a sua idade");
+
+            // Condições para determinar se a pessoa precisa votar ou não
+            if (Idade >= 18 && Idade < 65) {
+                Voto = "Sim, você precisa votar"; 
+            } else if (Idade < 16) {
+                Voto = "Você ainda não pode votar";
+            } else {
+                Voto = "Voto opcional";
+            }
+
+            var lista = "<ul><li>Nome: " + Nome + "</li><li>Idade: " + Idade + "</li><li>Voto: " + Voto + "</li></ul>";
+
+            document.getElementById("resultadoVoto").innerHTML = lista;
+        }
+
+        // Função para realizar operações matemáticas básicas
+        function operacoesMatematicas() {
+            let Nome;
+            let Valor1;
+            let Valor2;
+            let Resultado;
+            let operacao;
+
+            Nome = prompt("Digite o seu Nome");
+            Valor1 = Number(prompt("Digite o primeiro valor"));
+            Valor2 = Number(prompt("Digite o segundo valor"));
+
+            operacao = prompt("Escolha uma das opções: \n 1: Somar \n 2: Subtrair \n 3: Dividir \n 4: Multiplicar");
+
+            // Switch case para realizar a operação matemática escolhida pelo usuário
+            if (operacao === "1") {
+                Resultado = Valor1 + Valor2; 
+            } else if (operacao === "2") {
+                Resultado = Valor1 - Valor2; 
+            } else if (operacao === "3") {
+                // Verifica se o segundo valor não é zero antes de dividir
+                if (Valor2 !== 0) {
+                    Resultado = Valor1 / Valor2; 
+                } else {
+                    Resultado = "Erro: Divisão por zero";
+                }
+            } else if (operacao === "4") {
+                Resultado = Valor1 * Valor2; 
+            } else {
+                Resultado = "Operação inválida";
+            }
+
+            var lista = "<ul><li>Nome: " + Nome + "</li><li>Resultado: " + Resultado + "</li></ul>";
+
+            document.getElementById("resultadoOperacoes").innerHTML = lista;
+        }
+    </script>
+</body>
+</html>
+ 
